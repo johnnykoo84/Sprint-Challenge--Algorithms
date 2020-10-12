@@ -96,8 +96,24 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        print(f'current list: {self._list} current position: {self._position}')
+        if not self.can_move_right():
+            print('cant move right')
+            return
+        else:
+            print('can move right current position:', self._position)
+            self.move_right()
+            print('self.compare_item()', self.compare_item())
+            if self.compare_item() == None:
+                self.swap_item()
+
+            if self.compare_item() == -1:
+                print('front item is larger')
+                print(f'before swap {self._list}')
+                self.swap_item()
+                print(f'after swap {self._list}')
+            self.sort()
+                
 
 
 if __name__ == "__main__":
