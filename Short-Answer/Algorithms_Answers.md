@@ -27,4 +27,4 @@ Reason: bunnies will decrease by one as it goes one recursion. When bunnies = 0,
 
 ## Exercise II
 
-answer) O(n), you start with floor=1 and try dropping an egg. You will reach f floor and the egg will get broken. In the worst case the f will be the top floor. Therefore, the runtime time complexity is n, nth floor.
+answer) We randomly pick the middle floor and try dropping it. If it breaks, then we pick another lower middle floor, otherwise we go to upper middle floor, this way we know it is not O(n), but rather, O(Log(n)), just like binary search
