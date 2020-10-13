@@ -96,23 +96,38 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        print(f'current list: {self._list} current position: {self._position}')
-        if not self.can_move_right():
-            print('cant move right')
-            return
-        else:
-            print('can move right current position:', self._position)
-            self.move_right()
-            print('self.compare_item()', self.compare_item())
-            if self.compare_item() == None:
-                self.swap_item()
+        # it is like bubble sort
+        
+        # turn the light on for the beginning
+        self.set_light_on()
 
-            if self.compare_item() == -1:
-                print('front item is larger')
-                print(f'before swap {self._list}')
+        
+        # loop when the light is on
+        while self.light_is_on():
+            
+            # when the light is off, we exit the while loop
+            self.set_light_off()
+
+            # let's go to the beginning all the way to the left
+            self._position= 0 # I'm not sure If I can access and update self._position
+
+            # loop until it can move to the right
+            while self.can_move_right():
+                # pick up the item
                 self.swap_item()
-                print(f'after swap {self._list}')
-            self.sort()
+                self.move_right()
+
+                # compare
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+
+                # let's go back to the previous position
+                self.move_left()
+                # put my item back
+                self.swap_item()
+                # go to the next position
+                self.move_right()
                 
 
 
